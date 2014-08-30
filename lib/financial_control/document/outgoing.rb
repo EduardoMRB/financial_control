@@ -1,3 +1,5 @@
+require "mongoid"
+
 module FinancialControl
   class Outgoing
     include Mongoid::Document
