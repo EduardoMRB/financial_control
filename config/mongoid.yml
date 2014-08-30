@@ -1,0 +1,6 @@
+development:
+  sessions:
+    default:
+      database: financial_control
+      hosts:
+        - localhost:27017
