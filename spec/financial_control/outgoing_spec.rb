@@ -21,4 +21,13 @@ describe FinancialControl::Outgoing do
   it "should respond to save message" do
     expect(@outgoing).to respond_to(:save)
   end
+
+  it "should have default date value" do
+    Timecop.freeze do
+      outgoing = FinancialControl::Outgoing.new(
+        description: "Desc", payment_method: "Credit")
+
+      expect(outgoing.date).to eq Date.new
+    end
+  end
 end
