@@ -15,3 +15,7 @@ get %r{/outgoing/(\d{4})/(\d{2})/(\d{2})} do |year, month, day|
   date = Date.new(year.to_i, month.to_i, day.to_i)
   json FinancialControl::Outgoing.where(date: date)
 end
+
+post "/outgoing" do
+
+end

@@ -30,4 +30,15 @@ describe FinancialControl::Outgoing do
       expect(outgoing.date).to eq Date.new
     end
   end
+
+  it "should validate presence of description and payment_method" do
+    outgoing = FinancialControl::Outgoing.new
+    expect(outgoing).to_not be_valid
+
+    outgoing.description = "Desc"
+    expect(outgoing).to_not be_valid
+
+    outgoing.payment_method = "Credit"
+    expect(outgoing).to be_valid
+  end
 end
