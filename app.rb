@@ -1,6 +1,7 @@
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), "lib"))
 require "mongoid"
 require "sinatra"
+require "sinatra/param"
 require "sinatra/json"
 require "sinatra/cross_origin"
 require "financial_control"
@@ -17,5 +18,11 @@ get %r{/outgoing/(\d{4})/(\d{2})/(\d{2})} do |year, month, day|
 end
 
 post "/outgoing" do
+  outgoing = FinancialControl::Outgoing.new(params)
 
+  if outgoing.save
+    json msg: "success", error: false
+  else
+    halt 400, "Fail to create outgoing"
+  end
 end
