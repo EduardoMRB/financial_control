@@ -18,7 +18,7 @@ get %r{/outgoing/(\d{4})/(\d{2})/(\d{2})} do |year, month, day|
 end
 
 post "/outgoing" do
-  date = Date.new(params[:year].to_i, params[:month].to_i, params[:day].to_i)
+  date = Time.at(params[:timestamp].to_i)
   outgoing_params = {
     date: date,
     description: params[:description],
