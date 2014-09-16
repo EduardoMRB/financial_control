@@ -1,0 +1,19 @@
+{
+  "name": "financial-control",
+  "version": "0.0.0",
+  "homepage": "https://github.com/EduardoMRB/financial_control",
+  "authors": [
+    "Eduardo Borges <eduardomrb@gmail.com>"
+  ],
+  "moduleType": [
+    "es6"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
