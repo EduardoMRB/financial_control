@@ -6,6 +6,8 @@ var gulp = require("gulp"),
     connect = require("gulp-connect"),
     gulpif = require("gulp-if"),
 
+    env = process.env.NODE_ENV || "development",
+
     files = {
       js: [
         "bower_components/traceur-runtime/traceur-runtime.js",
@@ -19,3 +21,34 @@ var gulp = require("gulp"),
       ],
       scss: ["scss/**/*.scss"]
     };
+
+gulp.task("connect", function () {
+  connect.server({
+    root: "app",
+    livereload: true
+  });
+});
+
+gulp.task("js", function () {
+  return gulp.src(files.js)
+    .pipe(traceur())
+    .pipe(gulpif(env === "production", uglify()))
+    .pipe(concat("app.js"))
+    .pipe(gulp.dest("dist/"))
+    .pipe(connect.reload());
+});
+
+gulp.task("scss", function () {
+  return gulp.src(files.scss)
+    .pipe(sass())
+    .pipe(concat("app.css"))
+    .pipe(gulp.dest("dist/app.css"))
+    .pipe(connect.reload());
+});
+
+gulp.task("watch", function () {
+  gulp.watch(files.js, ["js"]);
+  gulp.watch(files.scss, ["scss"]);
+});
+
+gulp.task("default", ["connect", "watch"]);
