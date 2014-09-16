@@ -24,7 +24,7 @@ var gulp = require("gulp"),
 
 gulp.task("connect", function () {
   connect.server({
-    root: "app",
+    root: ".",
     livereload: true
   });
 });
