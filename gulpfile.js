@@ -10,7 +10,7 @@ var gulp = require("gulp"),
 
     files = {
       js: [
-        "bower_components/traceur-runtime/traceur-runtime.js",
+        "bower_components/traceur/traceur.js",
         "bower_components/es6-module-loader/dist/es6-module-loader.js",
         "bower_components/jquery/jquery.js",
         "bower_components/lodash/dist/lodash.js",
@@ -31,7 +31,9 @@ gulp.task("connect", function () {
 
 gulp.task("js", function () {
   return gulp.src(files.js)
-    .pipe(traceur())
+    .pipe(traceur({
+      modules: "instantiate"
+    }))
     .pipe(gulpif(env === "production", uglify()))
     .pipe(concat("app.js"))
     .pipe(gulp.dest("dist/"))
