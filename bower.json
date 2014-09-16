@@ -15,5 +15,14 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "angular": "~1.2.24",
+    "angular-route": "~1.2.24",
+    "angular-resource": "~1.2.24",
+    "angular-mocks": "~1.2.24",
+    "lodash": "~2.4.1",
+    "jquery": "~2.1.1",
+    "es6-module-loader": "~0.8.2"
+  }
 }
