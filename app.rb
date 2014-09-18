@@ -10,11 +10,17 @@ configure do
   enable :cross_origin
 end
 
+set :allow_origin, :any
+set :allow_methods, [:get, :post, :put, :options, :head]
+set :expose_methods, ["Content-Type"]
+set :protection, false
+
 Mongoid.load!(File.join(File.dirname(__FILE__), "config/mongoid.yml"))
 
-get %r{/outgoing/(\d{4})/(\d{2})/(\d{2})} do |year, month, day|
-  date = Date.new(year.to_i, month.to_i, day.to_i)
-  json FinancialControl::Outgoing.where(date: date)
+get "/outgoing" do
+  date = Time.at(params[:timestamp].to_i)
+  # json FinancialControl::Outgoing.where(date: date)
+  json FinancialControl::Outgoing.all
 end
 
 post "/outgoing" do

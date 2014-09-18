@@ -10,9 +10,7 @@ var gulp = require("gulp"),
 
     files = {
       js: [
-        "bower_components/traceur/traceur.js",
-        "bower_components/es6-module-loader/dist/es6-module-loader.js",
-        "bower_components/jquery/jquery.js",
+        "bower_components/jquery/dist/jquery.js",
         "bower_components/lodash/dist/lodash.js",
         "bower_components/angular/angular.js",
         "bower_components/angular-resource/angular-resource.js",
@@ -24,23 +22,19 @@ var gulp = require("gulp"),
 
 gulp.task("connect", function () {
   connect.server({
-    root: ".",
     livereload: true
   });
 });
 
 gulp.task("js", function () {
   return gulp.src(files.js)
-    .pipe(traceur({
-      modules: "instantiate"
-    }))
-    .pipe(gulpif(env === "production", uglify()))
     .pipe(concat("app.js"))
+    .pipe(gulpif(env === "production", uglify()))
     .pipe(gulp.dest("dist/"))
     .pipe(connect.reload());
 });
 
-gulp.task("scss", function () {
+gulp.task("sass", function () {
   return gulp.src(files.scss)
     .pipe(sass())
     .pipe(concat("app.css"))
@@ -50,7 +44,7 @@ gulp.task("scss", function () {
 
 gulp.task("watch", function () {
   gulp.watch(files.js, ["js"]);
-  gulp.watch(files.scss, ["scss"]);
+  gulp.watch(files.scss, ["sass"]);
 });
 
-gulp.task("default", ["connect", "watch"]);
+gulp.task("default", ["connect", "watch", "js", "sass"]);

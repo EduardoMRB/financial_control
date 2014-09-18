@@ -2,10 +2,38 @@
 <html lang="en" ng-app="financialControl">
 <head>
   <meta charset="UTF-8">
-  <title></title>
+  <title>Financial Control</title>
 </head>
-<body>
-  
+<body ng-controller="ListCtrl">
+  <h1>Outgoings</h1>
+
+  <table>
+    <thead>
+      <th>Date</th>
+      <th>Description</th>
+      <th>Payment method</th>
+    </thead>
+
+    <tbody ng-repeat="outgoing in outgoings">
+      <tr>
+        <td>{{ outgoing.date }}</td>
+        <td>{{ outgoing.description }}</td>
+        <td>{{ outgoing.payment_method }}</td>
+      </th>
+    </tbody>
+  </table>
+
+  <h2>Add</h2>
+  <form ng-submit="add()">
+    <label for="description">Description</label>
+    <input id="description" type="text" ng-model="description">
+
+    <label for="method">Payment Method</label>
+    <input id="method" type="text" ng-model="method">
+
+    <button>Add!</button>
+  </form>
+
   <script src="dist/app.js"></script>
 </body>
 </html>

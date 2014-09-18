@@ -15,15 +15,9 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      "bower_components/traceur-runtime/traceur-runtime.js",
-      "bower_components/es6-module-loader/dist/es6-module-loader.js",
-      "bower_components/jquery/jquery.js",
-      "bower_components/lodash/dist/lodash.js",
-      "bower_components/angular/angular.js",
-      "bower_components/angular-resource/angular-resource.js",
-      "bower_components/angular-route/angular-route.js",
-      'scripts/**/*.js',
-      'test/**/*-spec.js'
+      "dist/app.js",
+      "bower_components/angular-mocks/angular-mocks.js",
+      "test/**/*-spec.js"
     ],
 
 
